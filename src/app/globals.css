@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --color-mine-1: #0e0314;
+  --color-mine-2: #281039;
+  --color-mine-3: #2c4273;
+  --color-mine-4: #407292;
+  --color-mine-5: #56a3b2;
+  --color-mine-6: #6dd4c3;
+  --color-mine-7: #95ffcf;
+  --color-mine-8: #d5ffcc;
+
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
