@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
-  AcademicCapIcon,
-  FaceSmileIcon,
-  RectangleGroupIcon,
+  // AcademicCapIcon,
+  // FaceSmileIcon,
+  // RectangleGroupIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 
@@ -24,13 +24,16 @@ export default function Navmenu() {
             className="flex border-b-1 bg-gradient-to-b from-sky-500 border-sky-50 px-4 py-2 font-bold rounded-t-md"
             target="_blank"
           >
-            <AcademicCapIcon className="w-6 h-6 mr-2" />
-            Sign In
+            Sign Up
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link href="/#showcase" className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50">
-            <RectangleGroupIcon className="w-6 h-6 mr-2" />
+          <Link href="" className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50">
+            Log In
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link href="" className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50">
             Pricing
           </Link>
         </MenuItem>
@@ -39,7 +42,7 @@ export default function Navmenu() {
             href=""
             className="flex px-4 py-2 font-semibold"
           >
-            <FaceSmileIcon className="w-6 h-6 mr-2" />
+            {/* <FaceSmileIcon className="w-6 h-6 mr-2" /> */}
             About Us
           </Link>
         </MenuItem>        

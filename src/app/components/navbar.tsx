@@ -1,19 +1,16 @@
 import Link from "next/link";
 import Navmenu from "./navmenu";
-import {
-  AcademicCapIcon,
-  FaceSmileIcon,
-  RectangleGroupIcon,
-} from "@heroicons/react/24/solid";
+import { AcademicCapIcon } from "@heroicons/react/24/solid";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-4 bg-sky-300 text-sky-50 sticky top-0 shadow-md z-50">
+    <nav className="flex items-center justify-between p-4 bg-sky-400 text-sky-50 sticky top-0 shadow-md z-50">
       <Link
         href="/"
-        className="text-xl font-bold p-4 hover:bg-sky-400 rounded-md transition duration-200 ease-in-out border border-sky-50"
+        className="flex flex-row text-xl font-bold p-4 hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 rounded-md transition duration-200 ease-in-out"
       >
-        Cloud Video Converter App
+        <AcademicCapIcon className="w-6 h-6 mr-2" />
+        Awesome Team
       </Link>
       <div className="md:hidden">
         <Navmenu />
@@ -21,25 +18,29 @@ export default function Navbar() {
       <div className="hidden md:flex flex-row items-center space-x-2 text-lg">
         <Link
           href=""
-          className="flex hover:bg-gradient-to-b hover:from-sky-400 hover:to-sky-300 p-4 font-bold rounded-t-md"
+          className="flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-t-md"
         >
-          <RectangleGroupIcon className="w-6 h-6 mr-2" />
           Pricing
         </Link>
         <Link
           href=""
-          className="flex hover:bg-gradient-to-b hover:from-sky-400 hover:to-sky-300 p-4 font-bold rounded-t-md"
+          className="flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-t-md"
         >
-          <FaceSmileIcon className="w-6 h-6 mr-2" />
           About Us
         </Link>
         <Link
           href=""
-          className="flex hover:bg-gradient-to-b hover:from-sky-400 hover:to-sky-300 p-4 font-bold rounded-t-md"
+          className="flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-t-md"
           target="_blank"
         >
-          <AcademicCapIcon className="w-6 h-6 mr-2" />
-          Sign In
+          Log In
+        </Link>
+        <Link
+          href=""
+          className="ml-2 flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-md border-1 border-sky-50"
+          target="_blank"
+        >
+          Sign Up
         </Link>
       </div>
     </nav>
