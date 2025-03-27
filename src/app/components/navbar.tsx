@@ -31,14 +31,12 @@ export default function Navbar() {
         <Link
           href=""
           className="flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-t-md"
-          target="_blank"
         >
           Log In
         </Link>
         <Link
           href=""
           className="ml-2 flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-md border-1 border-sky-50"
-          target="_blank"
         >
           Sign Up
         </Link>
