@@ -29,13 +29,13 @@ export default function Navbar() {
           About Us
         </Link>
         <Link
-          href=""
+          href="/login"
           className="flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-t-md"
         >
           Log In
         </Link>
         <Link
-          href=""
+          href="/signup"
           className="ml-2 flex hover:bg-gradient-to-b hover:from-sky-500 hover:to-sky-400 p-4 font-bold rounded-md border-1 border-sky-50"
         >
           Sign Up
