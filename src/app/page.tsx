@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="font-bold text-2xl md:text-5xl text-center">
         Cloud Video Converter App
       </h1>
-      
+
       <Filepicker />
     </main>
   );
