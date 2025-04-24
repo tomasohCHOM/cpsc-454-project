@@ -8,7 +8,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 export default function Filepicker() {
   const { openFilePicker, filesContent, loading } = useFilePicker({
-    accept: ".txt",
+    accept: [".txt", ".m4a"],
   });
 
   if (loading) {
