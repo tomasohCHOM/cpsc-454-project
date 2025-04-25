@@ -30,7 +30,7 @@ async function fetchData(blob: any){
 
 export default function Filepicker() {
   const { openFilePicker, filesContent, loading } = useFilePicker({
-    accept: [".txt", ".m4a"],
+    accept: [".mp4", ".mp4", ".wav", ".flac"],
     readAs: 'BinaryString'
   });
 
