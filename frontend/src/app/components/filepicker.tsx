@@ -6,15 +6,41 @@ import Filecard from "./filecard";
 
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
+async function fetchData(blob: any){
+  try{
+    console.log(blob);
+    const response = await fetch("https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/", {
+      method: "POST",
+      body: JSON.stringify({ data: blob }) 
+    });
+
+    if (!response.ok){
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data
+  }
+  catch (error){
+    console.log("Error is ", error);
+    throw error;
+  }
+}
+
 export default function Filepicker() {
   const { openFilePicker, filesContent, loading } = useFilePicker({
     accept: [".txt", ".m4a"],
+    readAs: 'BinaryString'
   });
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  
+  if(filesContent && filesContent.at(0) && filesContent.at(0).content){
+    fetchData(filesContent.at(0).content)
+  }
   return (
     <>
       {filesContent.length === 0 && (
@@ -58,6 +84,7 @@ export default function Filepicker() {
                 size={(file.size / (1024 * 1024)).toFixed(2)}
               />
             ))}
+
           </div>
           <div className="flex justify-end">
             <button className="flex flex-row font-bold text-2xl rounded-md text-sky-50 bg-sky-400 p-4 my-2 justify-center items-center">
