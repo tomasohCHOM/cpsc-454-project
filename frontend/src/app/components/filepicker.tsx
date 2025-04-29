@@ -6,12 +6,14 @@ import Filecard from "./filecard";
 
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
-async function fetchData(blob: any){
+async function fetchData(file: any){
   try{
-    console.log(blob);
-    const response = await fetch("https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/", {
+      const response = await fetch("https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/", {
       method: "POST",
-      body: JSON.stringify({ data: blob }) 
+      headers: {
+        "Content-Type": "application/octet-stream"
+      },
+      body: file
     });
 
     if (!response.ok){
@@ -29,17 +31,16 @@ async function fetchData(blob: any){
 }
 
 export default function Filepicker() {
-  const { openFilePicker, filesContent, loading } = useFilePicker({
-    accept: [".mp4", ".mp4", ".wav", ".flac"],
-    readAs: 'BinaryString'
+  const { openFilePicker, filesContent, loading, plainFiles} = useFilePicker({
+    accept: [".mp4", ".mp3", ".wav", ".flac"],
+    readAs: "BinaryString"
   });
 
   if (loading) {
     return <div>Loading...</div>;
   }
-  
-  if(filesContent && filesContent.at(0) && filesContent.at(0).content){
-    fetchData(filesContent.at(0).content)
+  if(filesContent.length > 0){
+    fetchData(filesContent[0].content);
   }
   return (
     <>

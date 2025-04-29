@@ -1,22 +1,22 @@
 import json
-import uuid
+import base64
 from botocore.exceptions import ClientError
 import logging
-import boto3
+from driver import Driver
 
 logger = logging.getLogger(__name__)
 def main(event, context):
     try:
-        payload = json.loads(event["body"])
-        data = payload["data"]
-        client = boto3.client('s3')
-        bucket = "cdkstackstoragestack887cc089-uploadbucket13b7e0d9-teo1qw5fgcn6"
-        key = str(uuid.uuid4())
-        client.put_object(Bucket=bucket, Key=key, Body=data)
+        driver = Driver()
+        data = base64.b64decode(event["body"])
+
+        # upload to s3
+        driver.uploadMedia(data)
+        # transcribe
+        # driver.getTranscription()
     except ClientError as err:
         logger.error(
-                "Couldn't check for existence of %s. Here's why: %s: %s",
-                "topics table",
+                "Failed to upload",
                 err.response["Error"]["Code"],
                 err.response["Error"]["Message"],
             )
@@ -27,6 +27,6 @@ def main(event, context):
                   "Access-Control-Allow-Origin" : "http://localhost:3000",
                   'Content-Type': 'application/json',
                 },
-    "body": json.dumps("Hello from lambda")
+    "body": json.dumps(event)
 }
     return response
