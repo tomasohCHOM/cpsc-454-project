@@ -18,7 +18,7 @@ CSUF CPSC 454 Project
 
 ```bash
 1. Clone the repo
-2. Install Dependencies
+2. Install Dependencies (Ensure latest Node installed)
 
 cd frontend
 npm install
@@ -28,16 +28,17 @@ npm install
 3. Run the backend
 
 cd backend
-npm run dev
+npm run build
 
 4. Run the frontend
 
 cd frontend
-npm run build
+npm run dev
 
 5. Open
 ```
-[http://localhost:3000](http://localhost:3000)
+[http://localhost:3000](http://localhost:3000) (Frontend) \
+[http://localhost:5000](http://localhost:5000) (Backend)
 ```bash
 with your browser
 ```
