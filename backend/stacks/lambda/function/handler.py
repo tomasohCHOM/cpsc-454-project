@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 def main(event, context):
     try:
         driver = Driver()
-        data = event["body"]
+        data = base64.decode(event["body"])
 
         # upload to s3
         driver.uploadMedia(data)
