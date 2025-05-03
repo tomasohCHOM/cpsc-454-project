@@ -30,7 +30,7 @@ def main(event, context):
     "isBase64Encoded": False,
     "statusCode": 200,
     "headers": {
-                  "Access-Control-Allow-Origin" : "http://localhost:3000",
+                  "Access-Control-Allow-Origin" : "*",
                   'Content-Type': 'application/json',
                 },
     "body": json.dumps(event)
