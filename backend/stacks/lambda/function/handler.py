@@ -8,18 +8,24 @@ logger = logging.getLogger(__name__)
 def main(event, context):
     try:
         driver = Driver()
-        data = base64.decode(event["body"])
+        data = base64.b64decode(event["body"])
+        event["body"] = ""
 
         # upload to s3
         driver.uploadMedia(data)
         # transcribe
-        # driver.getTranscription()
+        event["transcription"] = driver.getTranscription()
     except ClientError as err:
-        logger.error(
-                "Failed to upload",
-                err.response["Error"]["Code"],
-                err.response["Error"]["Message"],
-            )
+        return {
+            "isBase64Encoded": False,
+            "statusCode": 500,
+            "headers": {
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                "Content-Type": "application/json",
+                "Error-Description": str(err)
+            },
+            "body": json.dumps(event)
+        }
     response = {
     "isBase64Encoded": False,
     "statusCode": 200,

@@ -1,14 +1,15 @@
 "use client";
 
 import { useFilePicker } from "use-file-picker";
-import React from "react";
+import React, { useState } from "react";
 import Filecard from "./filecard";
 
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
 async function fetchData(file: any){
   try{
       const response = await fetch("https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/", {
+      //const response = await fetch("http://localhost:9090", {
       method: "POST",
       headers: {
         "Content-Type": "application/octet-stream"
@@ -30,17 +31,30 @@ async function fetchData(file: any){
   }
 }
 
-export default function Filepicker() {
-  const { openFilePicker, filesContent, loading, plainFiles} = useFilePicker({
-    accept: [".mp4", ".mp3", ".wav", ".flac"],
-    readAs: "BinaryString"
-  });
 
+export default function Filepicker() {
+  const [dlUrl, setDlUrl] = useState("");
+  const [dnrr, setDnrr] = useState(false);
+  function redirectToDownload() {
+    if (dlUrl == "") {
+      console.log("no");
+      return;
+    }
+    location.href = dlUrl;
+  }
+
+  const { openFilePicker, filesContent, loading, plainFiles} = useFilePicker({
+    accept: [".flac"],
+    readAs: "ArrayBuffer"
+  });
   if (loading) {
     return <div>Loading...</div>;
   }
   if(filesContent.length > 0){
-    fetchData(filesContent[0].content);
+    if (!dnrr) {
+      fetchData(filesContent[0].content).then((r) => setDlUrl(r["transcription"]));
+      setDnrr(true);
+    }
   }
   return (
     <>
@@ -88,9 +102,9 @@ export default function Filepicker() {
 
           </div>
           <div className="flex justify-end">
-            <button className="flex flex-row font-bold text-2xl rounded-md text-sky-50 bg-sky-400 p-4 my-2 justify-center items-center">
-              Convert
-              <ArrowRightIcon className="w-6 h-6 ml-2" />
+            <button onClick={redirectToDownload} className="flex flex-row font-bold text-2xl rounded-md text-sky-50 bg-sky-400 p-4 my-2 justify-center items-center">
+              Download
+              <ArrowDownIcon className="w-6 h-6 ml-2" />
             </button>
           </div>
         </div>

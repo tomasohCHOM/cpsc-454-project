@@ -1,4 +1,4 @@
-import { LambdaRestApi, ContentHandling } from "aws-cdk-lib/aws-apigateway";
+import { LambdaRestApi, ContentHandling, Cors } from "aws-cdk-lib/aws-apigateway";
 import { Function } from "aws-cdk-lib/aws-lambda";
 import { Stack, StackProps} from "aws-cdk-lib";
 import { Construct } from "constructs";
@@ -18,7 +18,7 @@ export class ApiGatewayStack extends Stack{
             handler: props.backendFunction,
             proxy: true,
             defaultCorsPreflightOptions:{
-                allowOrigins: ['http://localhost:3000'],
+                allowOrigins: Cors.ALL_ORIGINS,
                 allowHeaders: ['Content-Type']
             }
         });
