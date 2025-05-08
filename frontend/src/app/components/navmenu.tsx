@@ -28,24 +28,27 @@ export default function Navmenu() {
           </Link>
         </MenuItem>
         <MenuItem>
-          <Link href="" className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50">
+          <Link
+            href=""
+            className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50"
+          >
             Log In
-          </Link>
-        </MenuItem>
-        <MenuItem>
-          <Link href="" className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50">
-            Pricing
           </Link>
         </MenuItem>
         <MenuItem>
           <Link
             href=""
-            className="flex px-4 py-2 font-semibold"
+            className="flex px-4 py-2 font-semibold  border-b-1 border-sky-50"
           >
+            Pricing
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link href="" className="flex px-4 py-2 font-semibold">
             {/* <FaceSmileIcon className="w-6 h-6 mr-2" /> */}
             About Us
           </Link>
-        </MenuItem>        
+        </MenuItem>
       </MenuItems>
     </Menu>
   );

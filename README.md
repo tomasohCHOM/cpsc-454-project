@@ -3,6 +3,7 @@
 CSUF CPSC 454 Project
 
 ## Contributors:
+
 - Khoa Nguyen
 - Thomas Oh
 - Owen Rotenberg
@@ -37,8 +38,10 @@ npm run dev
 
 5. Open
 ```
+
 [http://localhost:3000](http://localhost:3000) (Frontend) \
 [http://localhost:5000](http://localhost:5000) (Backend)
+
 ```bash
 with your browser
 ```

@@ -6,31 +6,32 @@ import Filecard from "./filecard";
 
 import { ArrowDownIcon } from "@heroicons/react/24/solid";
 
-async function fetchData(file: any){
-  try{
-      const response = await fetch("https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/", {
-      //const response = await fetch("http://localhost:9090", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/octet-stream"
+async function fetchData(file: any) {
+  try {
+    const response = await fetch(
+      "https://msl2asra3d.execute-api.us-west-1.amazonaws.com/prod/",
+      {
+        //const response = await fetch("http://localhost:9090", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/octet-stream",
+        },
+        body: file,
       },
-      body: file
-    });
+    );
 
-    if (!response.ok){
+    if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
     console.log(data);
-    return data
-  }
-  catch (error){
+    return data;
+  } catch (error) {
     console.log("Error is ", error);
     throw error;
   }
 }
-
 
 export default function Filepicker() {
   const [dlUrl, setDlUrl] = useState("");
@@ -43,16 +44,18 @@ export default function Filepicker() {
     location.href = dlUrl;
   }
 
-  const { openFilePicker, filesContent, loading, plainFiles} = useFilePicker({
+  const { openFilePicker, filesContent, loading, plainFiles } = useFilePicker({
     accept: [".flac"],
-    readAs: "ArrayBuffer"
+    readAs: "ArrayBuffer",
   });
   if (loading) {
     return <div>Loading...</div>;
   }
-  if(filesContent.length > 0){
+  if (filesContent.length > 0) {
     if (!dnrr) {
-      fetchData(filesContent[0].content).then((r) => setDlUrl(r["transcription"]));
+      fetchData(filesContent[0].content).then((r) =>
+        setDlUrl(r["transcription"]),
+      );
       setDnrr(true);
     }
   }
@@ -99,10 +102,12 @@ export default function Filepicker() {
                 size={(file.size / (1024 * 1024)).toFixed(2)}
               />
             ))}
-
           </div>
           <div className="flex justify-end">
-            <button onClick={redirectToDownload} className="flex flex-row font-bold text-2xl rounded-md text-sky-50 bg-sky-400 p-4 my-2 justify-center items-center">
+            <button
+              onClick={redirectToDownload}
+              className="flex flex-row font-bold text-2xl rounded-md text-sky-50 bg-sky-400 p-4 my-2 justify-center items-center"
+            >
               Download
               <ArrowDownIcon className="w-6 h-6 ml-2" />
             </button>

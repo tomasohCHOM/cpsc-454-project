@@ -5,6 +5,8 @@ import logging
 from driver import Driver
 
 logger = logging.getLogger(__name__)
+
+
 def main(event, context):
     try:
         driver = Driver()
@@ -22,17 +24,17 @@ def main(event, context):
             "headers": {
                 "Access-Control-Allow-Origin": "http://localhost:3000",
                 "Content-Type": "application/json",
-                "Error-Description": str(err)
+                "Error-Description": str(err),
             },
-            "body": json.dumps(event)
+            "body": json.dumps(event),
         }
     response = {
-    "isBase64Encoded": False,
-    "statusCode": 200,
-    "headers": {
-                  "Access-Control-Allow-Origin" : "*",
-                  'Content-Type': 'application/json',
-                },
-    "body": json.dumps(event)
-}
+        "isBase64Encoded": False,
+        "statusCode": 200,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+        },
+        "body": json.dumps(event),
+    }
     return response
